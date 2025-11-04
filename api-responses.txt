@@ -4,3 +4,69 @@ Response: {"id":1,"title":"Learn Node.js", "completed": false,"priority":"high",
  GET /task/999
  Response: {"error": "Task not found"}
  Status: 404
+
+
+
+assignment06-Lab01
+
+TEST 1: GET /task/1 (Valid ID - Task exists)
+---------------------------------------------
+Status: 200 OK
+Response:
+{
+    "id": 1,
+    "title": "Learn Node.js",
+    "completed": false,
+    "priority": "high",
+    "createdAt": "2025-10-15T00:00:00.000Z"
+}
+
+==============================================
+
+TEST 2: GET /task/999 (Valid ID - Task does not exist)
+-------------------------------------------------------
+Status: 404 Not Found
+Response:
+{
+    "error": "Task not found"
+}
+
+==============================================
+
+TEST 3: GET /task/abc (Invalid ID - Letters)
+---------------------------------------------
+Status: 400 Bad Request
+Response:
+{
+    "error": "Invalid ID format"
+}
+
+==============================================
+
+TEST 4: GET /task/@#$ (Invalid ID - Special characters)
+--------------------------------------------------------
+Status: 400 Bad Request
+Response:
+{
+    "error": "Invalid ID format"
+}
+
+==============================================
+
+TEST 5: GET /tasks (Get all tasks)
+-----------------------------------
+Status: 200 OK
+Response: Array of 5 task objects
+
+==============================================
+
+TEST 6: GET /health (Check server health)
+------------------------------------------
+Status: 200 OK
+Response:
+{
+    "status": "healthy",
+    "uptime": [number of seconds]
+}
+
+==============================================
