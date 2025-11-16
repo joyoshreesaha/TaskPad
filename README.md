@@ -254,6 +254,84 @@ router.get('/new-route', (req, res) => {
 | 500 | Internal Server Error | Server-side error |
 
 ---
+---
+
+### **5. CREATE a new task**
+**Endpoint:** `POST /tasks`
+
+Creates a new task in the system.
+
+**Request Headers:**
+```
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+    "title": "Task title here",
+    "priority": "high",
+    "completed": false
+}
+```
+
+**Parameters:**
+- `title` (string, **required**) - The task title (cannot be empty)
+- `priority` (string, optional) - Task priority: `"low"`, `"medium"`, or `"high"` (default: `"medium"`)
+- `completed` (boolean, optional) - Task completion status (default: `false`)
+
+**Success Response (201 Created):**
+```json
+{
+    "success": true,
+    "message": "Task created successfully",
+    "data": {
+        "id": 1731772800000,
+        "title": "Task title here",
+        "completed": false,
+        "priority": "high",
+        "createdAt": "2025-11-16T18:00:00.000Z"
+    }
+}
+```
+
+**Error Responses:**
+
+**400 Bad Request** - Missing or empty title
+```json
+{
+    "success": false,
+    "error": "Title is required and must be a non-empty string"
+}
+```
+
+**400 Bad Request** - Invalid priority value
+```json
+{
+    "success": false,
+    "error": "Priority must be low, medium, or high"
+}
+```
+
+**How to test in Postman:**
+1. Set method to **POST**
+2. URL: `http://localhost:3000/tasks`
+3. Go to **Headers** tab
+   - Add: `Content-Type: application/json`
+4. Go to **Body** tab
+   - Select **raw**
+   - Select **JSON** from dropdown
+   - Enter your task data
+5. Click **Send**
+
+**Example:**
+```json
+{
+    "title": "Complete LAB 02",
+    "priority": "high",
+    "completed": false
+}
+```
 
 ## 🤝 Contributing
 
